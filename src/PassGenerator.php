@@ -96,7 +96,9 @@ class PassGenerator
     public function __construct($passId = false, bool $replaceExistent = false)
     {
         // Set certificate
-        $certPath = config('passgenerator.certificate_store_path');
+        $certPath = base_path(
+            path: config('passgenerator.certificate_store_path')
+        );
 
         if (is_file($certPath)) {
             $this->certStore = file_get_contents($certPath);
@@ -110,7 +112,9 @@ class PassGenerator
         $this->certStorePassword = config('passgenerator.certificate_store_password');
 
         // Set WWDR certificate
-        $wwdrCertPath = config('passgenerator.wwdr_certificate_path');
+        $wwdrCertPath = base_path(
+            path: config('passgenerator.wwdr_certificate_path')
+        );
 
         $validCert = false;
         if (is_file($wwdrCertPath)) {
